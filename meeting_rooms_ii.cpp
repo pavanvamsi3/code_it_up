@@ -1,3 +1,14 @@
+/*
+Input:
+3
+1 2
+2 3
+3 4
+
+Output:
+1
+*/
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
