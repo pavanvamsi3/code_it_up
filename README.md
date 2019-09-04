@@ -1,3 +1,4 @@
-# code_it_up
+## Code it up :boom:
 
-A code can be anyone
+
+# Why do we code, Bruce? :bat:
