@@ -21,7 +21,7 @@ struct Interval {
     int end;
 };
 
-bool sortByStart(Interval i, Interval j)
+static bool sortByStart(Interval i, Interval j)
 {
     return i.start < j.start;
 }
