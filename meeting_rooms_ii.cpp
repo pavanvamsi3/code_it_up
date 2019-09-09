@@ -12,36 +12,39 @@ Output:
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <queue>
 
 using namespace std;
 
-struct interval {
+struct Interval {
     int start;
     int end;
 };
 
-bool sort_by_start(interval i, interval j)
+bool sortByStart(Interval i, Interval j)
 {
     return i.start < j.start;
 }
 
-int get_meeting_rooms(vector<interval>&v)
+int minMeetingRooms(vector<Interval>&v)
 {
     if (v.empty()) {
         return 0;
     }
-    sort(v.begin(), v.end(), sort_by_start);
+    sort(v.begin(), v.end(), sortByStart);
+    
+    priority_queue<int, vector<int>, greater<int> > heap;
 
     int rooms = 1;
-    int min_end_time = v[0].end;
+    heap.push(v[0].end);
 
     for(int i=1; i<v.size(); i++) {
-        if (v[i].start < min_end_time) {
+        if (v[i].start < heap.top()) {
             rooms++;
+        } else {
+            heap.pop();
         }
-        if (v[i].end < min_end_time) {
-            min_end_time = v[i].end;
-        }
+        heap.push(v[i].end);
     }
     return rooms;
 }
@@ -52,13 +55,13 @@ int main()
     int n;
     cin >> n;
 
-    vector<interval>v;
+    vector<Interval>v;
 
     for(int i=0; i<n; i++) {
         int start;
         int end;
 
-        interval in;
+        Interval in;
 
         cin >> start;
         cin >> end;
@@ -68,7 +71,7 @@ int main()
         v.push_back(in);
     }
     
-    cout << get_meeting_rooms(v) << endl;
+    cout << minMeetingRooms(v) << endl;
 
     return 0;
 }
