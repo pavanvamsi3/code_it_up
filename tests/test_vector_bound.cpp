@@ -9,11 +9,19 @@ int main()
 {
     vector<int>v;
 
-    v.push_back(1);
-    v.push_back(2);
-    v.push_back(3);
+    int n;
 
-    cout << *lower_bound(v.begin(), v.end(), 2) << endl;
-    cout << *upper_bound(v.begin(), v.end(), 2) << endl;
+    cin >> n;
+    
+    for(int i=0; i<n; i++) {
+        int temp;
+        cin >> temp;
+        v.push_back(temp);
+    }
+    sort(v.begin(), v.end());
+    int bound;
+    cin >> bound;
+    cout << *lower_bound(v.begin(), v.end(), bound) << endl;
+    cout << *upper_bound(v.begin(), v.end(), bound) << endl;
     return 0;
 }
